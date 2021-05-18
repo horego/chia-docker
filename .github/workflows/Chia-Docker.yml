@@ -6,7 +6,7 @@ on:
       upstream_branch:
         description: 'chia branch name to use'
         required: true
-        default: 'dev'
+        default: 'latest'
       image_tag:
         description: 'special tag for this image build'
         required: true
@@ -26,4 +26,10 @@ jobs:
         run: docker build --no-cache --build-arg BRANCH=${{ github.event.inputs.upstream_branch }} -t ghcr.io/horego/chia-docker:${{ github.event.inputs.image_tag }} .
 
       - name: Push to github packages
-        run: docker push ghcr.io/horego/chia-docker:${{ github.event.inputs.image_tag }}
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: horego/chia-docker/my-image
+          tag_with_ref: true
