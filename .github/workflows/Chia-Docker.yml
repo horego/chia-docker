@@ -33,4 +33,4 @@ jobs:
         run: docker build --no-cache --build-arg BRANCH=${{ github.event.inputs.upstream_branch }} -t ghcr.io/horego/chia-docker:${{ github.event.inputs.image_tag }} .
 
       - name: Push to github packages
-        run: docker push ghcr.io/horego/chia-docker:${{ github.event.inputs.image_tag }}
+        run: docker push docker.pkg.github.com/horego/chia-docker:${{ github.event.inputs.image_tag }}
