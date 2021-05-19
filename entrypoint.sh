@@ -7,6 +7,8 @@ chia init
 if [[ ${keys} == "generate" ]]; then
   echo "to use your own keys pass them as a text file -v /path/to/keyfile:/path/in/container and -e keys=\"/path/in/container\""
   chia keys generate
+elif [[ ${keys} == "none" ]]; then
+  echo "Skipping import or generation of keys"
 else
   chia keys add -f ${keys}
 fi
