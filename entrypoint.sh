@@ -10,7 +10,13 @@ if [[ ${keys} == "generate" ]]; then
 elif [[ ${keys} == "none" ]]; then
   echo "Skipping import or generation of keys"
 else
-  chia keys add -f ${keys}
+  if [[ ${keys_passphrase} != "" ]]; then
+    openssl enc -d -aes-256-cbc -md sha512 -iter 100000 -salt -pass pass:${keys_passphrase} -in ${keys} -out ${keys_tmp}
+    chia keys add -f ${keys_tmp}
+    rm ${keys_tmp}
+  else
+    chia keys add -f ${keys}
+  fi
 fi
 
 for p in ${plots_dir//:/ }; do

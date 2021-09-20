@@ -4,6 +4,8 @@ EXPOSE 8555
 EXPOSE 8444
 
 ENV keys="generate"
+ENV keys_passphrase=""
+ENV keys_tmp="/tmp/mnemonic"
 ENV harvester="false"
 ENV farmer="false"
 ENV plots_dir="/plots"
