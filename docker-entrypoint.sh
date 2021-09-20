@@ -28,7 +28,7 @@ elif [[ ${keys} == "copy" ]]; then
     echo "A path to a copy of the farmer peer's ssl/ca required."
 	exit
   else
-  chia init -c "${ca}"
+    chia init -c "${ca}"
   fi
 else
   if [[ ${keys_passphrase} != "" ]]; then
