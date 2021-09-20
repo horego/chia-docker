@@ -14,7 +14,6 @@ else
     openssl enc -d -aes-256-cbc -md sha512 -iter 100000 -salt -pass pass:${keys_passphrase} -in ${keys} -out ${keys_tmp}
     chia keys add -f ${keys_tmp}
     rm ${keys_tmp}
-    keys_passphrase=
   else
     chia keys add -f ${keys}
   fi
@@ -42,6 +41,8 @@ elif [[ ${harvester} == 'true' ]]; then
 else
   chia start farmer
 fi
+
+trap "chia stop all -d; exit 0" SIGINT SIGKILL SIGTERM
 
 if [[ ${testnet} == "true" ]]; then
   if [[ -z $full_node_port || $full_node_port == "null" ]]; then
