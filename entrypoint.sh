@@ -14,6 +14,7 @@ else
     openssl enc -d -aes-256-cbc -md sha512 -iter 100000 -salt -pass pass:${keys_passphrase} -in ${keys} -out ${keys_tmp}
     chia keys add -f ${keys_tmp}
     rm ${keys_tmp}
+    export keys_passphrase=""
   else
     chia keys add -f ${keys}
   fi
