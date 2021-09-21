@@ -12,7 +12,9 @@ elif [[ ${harvester} == 'true' ]]; then
     chia start harvester
   fi
 elif [[ ${node_farmer_and_wallet} == 'true' ]]; then
+  echo "starting farmer"
   chia start farmer
+  echo "stopping harvester"
   chia stop harvester
 else
   chia start farmer
