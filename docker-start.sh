@@ -19,5 +19,5 @@ trap "chia stop all; exit 0" SIGTERM SIGQUIT
 
 # Ensures the log file actually exists, so we can tail successfully
 touch "$CHIA_ROOT/log/debug.log"
-tail -f "$CHIA_ROOT/log/debug.log"&
+tail -f "$CHIA_ROOT/log/debug.log" &
 while true; do sleep 30; done
