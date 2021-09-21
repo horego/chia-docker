@@ -20,10 +20,9 @@ else
   chia start farmer
 fi
 
-# trap "chia stop all -d; exit 0" SIGINT SIGKILL SIGTERM
+trap "chia stop all; chia stop all -d; exit 0" SIGINT SIGKILL SIGTERM SIGQUIT
 
 # Ensures the log file actually exists, so we can tail successfully
 touch "$CHIA_ROOT/log/debug.log"
-tail -f "$CHIA_ROOT/log/debug.log"
-# &
-# while true; do sleep 30; done
+tail -f "$CHIA_ROOT/log/debug.log" &
+while true; do sleep 30; done
