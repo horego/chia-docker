@@ -12,14 +12,13 @@ elif [[ ${harvester} == 'true' ]]; then
     chia start harvester
   fi
 elif [[ ${node_farmer_and_wallet} == 'true' ]]; then
-  chia start node
-  chia start wallet-only 
-  chia start farmer-only
+  chia start farmer
+  chia stop harvester
 else
   chia start farmer
 fi
 
-trap "chia stop all; exit 0" SIGTERM SIGQUIT
+trap "chia stop all -d; exit 0" SIGINT SIGKILL SIGTERM
 
 # Ensures the log file actually exists, so we can tail successfully
 touch "$CHIA_ROOT/log/debug.log"
