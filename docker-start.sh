@@ -11,6 +11,11 @@ elif [[ ${harvester} == 'true' ]]; then
     chia configure --set-farmer-peer "${farmer_address}:${farmer_port}"
     chia start harvester
   fi
+elif [[ ${node_farmer_and_wallet} == 'true' ]]; then
+  chia start node
+  chia start wallet-only 
+  chia start farmer-only
+fi
 else
   chia start farmer
 fi
