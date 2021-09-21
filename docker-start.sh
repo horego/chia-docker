@@ -15,7 +15,6 @@ elif [[ ${node_farmer_and_wallet} == 'true' ]]; then
   chia start node
   chia start wallet-only 
   chia start farmer-only
-fi
 else
   chia start farmer
 fi
