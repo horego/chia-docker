@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-#touch "$CHIA_ROOT/log/debug.log"
-#tail -n0 -f "$CHIA_ROOT/log/debug.log" &
+touch "$CHIA_ROOT/log/debug.log"
+tail -n0 -f --pid=$$ "$CHIA_ROOT/log/debug.log" &
 
 # shellcheck disable=SC2154
 if [[ ${farmer} == 'true' ]]; then
