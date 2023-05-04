@@ -33,10 +33,10 @@ elif [[ ${keys} == "copy" ]]; then
 else
   if [[ ${keys_passphrase} != "" ]]; then
     openssl enc -d -aes-256-cbc -md sha512 -iter 100000 -salt -pass pass:${keys_passphrase} -in ${keys} -out ${keys_tmp}
-    chia keys add -f ${keys_tmp}
+    chia keys add -l "" -f ${keys_tmp}
     rm ${keys_tmp}
   else
-    chia keys add -f ${keys}
+    chia keys add -l "" -f ${keys}
   fi
 fi
 
